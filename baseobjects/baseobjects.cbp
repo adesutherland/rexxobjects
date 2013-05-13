@@ -1,0 +1,641 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="baseobjects" />
+		<Option pch_mode="2" />
+		<Option default_target="WinReleaseScript" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="DebugLib">
+				<Option output="dist\Debug\libbaseobjects" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Debug\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Compiler>
+			</Target>
+			<Target title="ReleaseLib">
+				<Option output="dist\Release\libbaseobjects" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Release\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="DebugTestLib">
+				<Option output="dist\Debug\libbaseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Debug\test\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Compiler>
+			</Target>
+			<Target title="ReleaseTestLib">
+				<Option output="dist\Release\libbaseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Release\test\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="DebugTests">
+				<Option output="dist\Debug\baseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="dist\Debug\libbaseobjects.a;dist\Debug\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-lpthread -ldl" />
+					<Add library="dist\Debug\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add library="dist\Debug\libbaseobjectstest.a" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Linker>
+			</Target>
+			<Target title="ReleaseTests">
+				<Option output="dist\Release\baseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="dist\Release\libbaseobjects.a;dist\Release\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lpthread -ldl" />
+					<Add library="dist\Release\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add library="dist\Release\libbaseobjectstest.a" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Linker>
+			</Target>
+			<Target title="DebugScript">
+				<Option output="dist\Debug\rxoscript" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="src\script" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="dist\Debug\libbaseobjects.a;dist\Debug\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters='test.rex &quot;Argument 1&quot; &quot;Argument 2&quot;' />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+				</Compiler>
+				<Linker>
+					<Add option="-lpthread -ldl" />
+					<Add library="dist\Debug\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Linker>
+			</Target>
+			<Target title="ReleaseScript">
+				<Option output="dist\Release\rxoscript" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="src\script" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="dist\Release\libbaseobjects.a;dist\Release\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters='test.rex &quot;Argument 1&quot; &quot;Argument 2&quot;' />
+				<Compiler>
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lpthread -ldl" />
+					<Add library="dist\Release\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Linker>
+			</Target>
+			<Target title="WinDebugLib">
+				<Option output="dist\Debug\libbaseobjects" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Debug\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Compiler>
+			</Target>
+			<Target title="WinReleaseLib">
+				<Option output="dist\Release\libbaseobjects" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Release\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="WinDebugTestLib">
+				<Option output="dist\Debug\libbaseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Debug\test\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Compiler>
+			</Target>
+			<Target title="WinReleaseTestLib">
+				<Option output="dist\Release\libbaseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\Release\test\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="WinDebugTests">
+				<Option output="dist\Debug\baseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="dist\Debug\libbaseobjects.a;dist\Debug\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+				</Compiler>
+				<Linker>
+					<Add option="-mthreads" />
+					<Add library="dist\Debug\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add library="dist\Debug\libbaseobjectstest.a" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Linker>
+			</Target>
+			<Target title="WinReleaseTests">
+				<Option output="dist\Release\baseobjectstest" prefix_auto="1" extension_auto="1" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="dist\Release\libbaseobjects.a;dist\Release\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="processrxo.rex rxotest.rxo rxotest" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mthreads" />
+					<Add library="dist\Release\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add library="dist\Release\libbaseobjectstest.a" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Linker>
+			</Target>
+			<Target title="WinDebugScript">
+				<Option output="dist\Debug\rxoscript" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="src\script" />
+				<Option object_output="obj\Debug\" />
+				<Option external_deps="dist\Debug\libbaseobjects.a;dist\Debug\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="processrxo.rex baseobjectstest.rxo" />
+				<Compiler>
+					<Add option="-g" />
+					<Add option="-DDEBUG" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+				</Compiler>
+				<Linker>
+					<Add option="-mthreads" />
+					<Add library="dist\Debug\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add directory="..\..\rexxtrans\dist\Debug" />
+					<Add directory="..\..\shellspawn\dist\Debug" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="dist/Debug/rxoscript src/script/rxowrapper.rex src/script/rxowrapper.rex dist/Debug/rxowrapper -c rxowrapper-debug.cfg" />
+					<Add after="cmd /c copy src\script\rxowrapper-debug.cfg dist\Debug\rxowrapper.cfg" />
+					<Add after="dist/Debug/rxowrapper src/script/bootstraptest.rex dist/Debug/bootstraptest" />
+					<Add after="dist/Debug/rxowrapper src/script/processrxo.rex dist/Debug/processrxo" />
+					<Add after="cmd /c copy src\script\processrxo-debug.cfg dist\Debug\processrxo.cfg" />
+					<Add after="dist/Debug/processrxo src/script/rxotest.rxo dist/Debug/rxotest" />
+					<Add after="dist/Debug/processrxo src/script/baseobjectstest.rxo dist/Debug/baseobjectstest" />
+				</ExtraCommands>
+			</Target>
+			<Target title="WinReleaseScript">
+				<Option output="dist\Release\rxoscript" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="src\script" />
+				<Option object_output="obj\Release\" />
+				<Option external_deps="dist\Release\libbaseobjects.a;dist\Release\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="processrxo.rex baseobjectstest.rxo -c processrxo-r.cfg" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mthreads" />
+					<Add library="dist\Release\libbaseobjects.a" />
+					<Add library="librexxtrans.a" />
+					<Add library="libshellspawn.a" />
+					<Add directory="..\..\rexxtrans\dist\Release" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="strip dist/Release/rxoscript.exe" />
+					<Add after="cmd /c echo rem upx dist/Release/rxoscript.exe" />
+					<Add after="dist/Release/rxoscript src/script/rxowrapper.rex src/script/rxowrapper.rex dist/Release/rxowrapper -c rxowrapper-release.cfg" />
+					<Add after="cmd /c copy src\script\rxowrapper-release.cfg dist\Release\rxowrapper.cfg" />
+					<Add after="dist/Release/rxowrapper src/script/bootstraptest.rex dist/Release/bootstraptest" />
+					<Add after="dist/Release/rxowrapper src/script/processrxo.rex dist/Release/processrxo" />
+					<Add after="cmd /c copy src\script\processrxo-release.cfg dist\Release\processrxo.cfg" />
+					<Add after="dist/Release/processrxo src/script/rxotest.rxo dist/Release/rxotest" />
+					<Add after="dist/Release/processrxo src/script/baseobjectstest.rxo dist/Release/baseobjectstest" />
+				</ExtraCommands>
+			</Target>
+			<Target title="WinReginaReleaseLib">
+				<Option output="dist\ReginaRelease\libbaseobjects" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj\ReginaRelease\" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Option projectCompilerOptionsRelation="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+					<Add option="-D_REXXSAA" />
+					<Add option="-DRX_WEAKTYPING" />
+					<Add option="-D_STATIC_ONLY" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+					<Add directory="..\..\rexx\regina\dist" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mthreads" />
+				</Linker>
+			</Target>
+			<Target title="WinReginaReleaseScript">
+				<Option output="dist\ReginaRelease\rxoscript" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="src\script" />
+				<Option object_output="obj\ReginaRelease\" />
+				<Option external_deps="dist\Release\libbaseobjects.a;dist\Release\libbaseobjectstest.a;" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option parameters="rxowrapper.rex bootstraptest" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-DWIN32" />
+					<Add option="-D_WIN32" />
+					<Add option="-D__MINGW__" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-mthreads" />
+					<Add library="dist\ReginaRelease\libbaseobjects.a" />
+					<Add library="libregina.a" />
+					<Add library="libshellspawn.a" />
+					<Add library="wsock32" />
+					<Add directory="..\..\rexx\regina\dist" />
+					<Add directory="..\..\shellspawn\dist\Release" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="strip dist/ReginaRelease/rxoscript.exe" />
+					<Add after="cmd /c echo rem  upx dist/ReginaRelease/rxoscript.exe" />
+					<Add after="dist/ReginaRelease/rxoscript src/script/rxowrapper.rex src/script/rxowrapper.rex dist/ReginaRelease/rxowrapper -c rxowrapper-reginarelease.cfg" />
+					<Add after="cmd /c copy src\script\rxowrapper-reginarelease.cfg dist\ReginaRelease\rxowrapper.cfg" />
+					<Add after="dist/ReginaRelease/rxowrapper src/script/bootstraptest.rex dist/ReginaRelease/bootstraptest" />
+					<Add after="dist/ReginaRelease/rxowrapper src/script/processrxo.rex dist/ReginaRelease/processrxo" />
+					<Add after="cmd /c copy src\script\processrxo-reginarelease.cfg dist\ReginaRelease\processrxo.cfg" />
+					<Add after="dist/ReginaRelease/processrxo src/script/rxotest.rxo dist/ReginaRelease/rxotest" />
+					<Add after="dist/ReginaRelease/processrxo src/script/baseobjectstest.rxo dist/ReginaRelease/baseobjectstest" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="Debug" targets="DebugLib;DebugScript;" />
+			<Add alias="Release" targets="ReleaseLib;ReleaseScript;" />
+			<Add alias="WinDebug" targets="WinDebugLib;WinDebugScript;" />
+			<Add alias="WinRelease" targets="WinReleaseLib;WinReleaseScript;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-Wall" />
+			<Add option="-fexceptions" />
+			<Add option="-D_REXXTRANS" />
+			<Add directory="src" />
+		</Compiler>
+		<Unit filename="src\debug.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\exception.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\exception.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\object.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\object.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\rexxfunc.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\rexxfunc.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\script\baseobjectstest.rex">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\baseobjectstest.rxo">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\bootstraptest.rex">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\externalrexx.rex">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\main.cpp">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo-debug.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo-r.cfg">
+			<Option target="WinReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo-reginarelease.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo-release.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\processrxo.rex">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\realpath.cpp">
+			<Option target="WinReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\script\rxotest.rxo">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\rxowrapper-debug.cfg">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\rxowrapper-reginarelease.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\rxowrapper-release.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\rxowrapper.cfg">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\rxowrapper.rex">
+			<Option target="WinDebugScript" />
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\script\scriptlib.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\script\test.rex">
+			<Option target="DebugScript" />
+			<Option target="ReleaseScript" />
+			<Option target="WinDebugScript" />
+			<Option target="WinReleaseScript" />
+			<Option target="WinReginaReleaseScript" />
+		</Unit>
+		<Unit filename="src\shell.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\shell.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\test\botestlib.cpp">
+			<Option target="DebugTestLib" />
+			<Option target="ReleaseTestLib" />
+			<Option target="WinDebugTestLib" />
+			<Option target="WinReleaseTestLib" />
+		</Unit>
+		<Unit filename="src\test\main.cpp">
+			<Option target="DebugTests" />
+			<Option target="ReleaseTests" />
+			<Option target="WinDebugTests" />
+			<Option target="WinReleaseTests" />
+		</Unit>
+		<Unit filename="src\thread.cpp">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Unit filename="src\thread.h">
+			<Option target="DebugLib" />
+			<Option target="ReleaseLib" />
+			<Option target="WinDebugLib" />
+			<Option target="WinReleaseLib" />
+			<Option target="WinReginaReleaseLib" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+			<envvars />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

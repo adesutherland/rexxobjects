@@ -1,0 +1,2 @@
+export REXXTRANS_INTERPRETER=oorexx
+export REXXTRANS_TRACEFILE=stderr

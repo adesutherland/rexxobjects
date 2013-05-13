@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_workspace_file>
+	<Workspace title="RexxObjects">
+		<Project filename="shellspawn/shellspawn.cbp" />
+		<Project filename="rexxtrans/rexxtrans.cbp" />
+		<Project filename="baseobjects/baseobjects.cbp">
+			<Depends filename="rexxtrans/rexxtrans.cbp" />
+		</Project>
+		<Project filename="visualobjects/visualobjects.cbp" />
+		<Project filename="rexxhost/rexxhost.cbp" active="1" />
+	</Workspace>
+</CodeBlocks_workspace_file>

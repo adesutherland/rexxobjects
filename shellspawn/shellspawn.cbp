@@ -1,0 +1,222 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_project_file>
+	<FileVersion major="1" minor="6" />
+	<Project>
+		<Option title="shellspawn" />
+		<Option pch_mode="2" />
+		<Option compiler="gcc" />
+		<Build>
+			<Target title="DebugUnixLib">
+				<Option platforms="Unix;" />
+				<Option output="dist/Debug/libshellspawn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+				<ExtraCommands>
+					<Add after="cp src/shellspawn.h dist/Debug/shellspawn.h" />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseUnixLib">
+				<Option platforms="Unix;" />
+				<Option output="dist/Release/libshellspawn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp src/shellspawn.h dist/Release/shellspawn.h" />
+				</ExtraCommands>
+			</Target>
+			<Target title="DebugTestClient">
+				<Option output="dist/Debug/testclient" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="ReleaseTestClient">
+				<Option output="dist/Release/testclient" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Release" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="DebugWinLib">
+				<Option platforms="Windows;" />
+				<Option output="dist/Debug/libshellspawn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Debug/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+			</Target>
+			<Target title="ReleaseWinLib">
+				<Option platforms="Windows;" />
+				<Option output="dist/Release/libshellspawn" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="" />
+				<Option object_output="obj/Release/" />
+				<Option type="2" />
+				<Option compiler="gcc" />
+				<Option createDefFile="1" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-O2" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+				</Linker>
+			</Target>
+			<Target title="DebugShellTest">
+				<Option output="dist/Debug/shelltest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+				</Compiler>
+				<Linker>
+					<Add option="-lpthread" />
+					<Add library="dist/Debug/libshellspawn.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp src/test/input.txt dist/Debug/input.txt" />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseShellTest">
+				<Option output="dist/Release/shelltest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Release" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-lpthread" />
+					<Add library="dist/Release/libshellspawn.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp src/test/input.txt dist/Release/input.txt" />
+				</ExtraCommands>
+			</Target>
+			<Target title="DebugNoConsoleTest">
+				<Option output="dist/Debug/noconsoletest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Debug" />
+				<Option object_output="obj/Debug/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-Wall" />
+					<Add option="-g" />
+					<Add option="-I/usr/local/include -I/usr/include/freetype2 -Wno-non-virtual-dtor" />
+				</Compiler>
+				<Linker>
+					<Add option="-L/usr/local/lib -Wl,-rpath,/usr/local/lib -lfltk2 -lX11 -lXi -lXinerama -lXft -lpthread -lm -lXext -lsupc++ -lpthread" />
+					<Add library="dist/Debug/libshellspawn.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp src/test/input.txt dist/Debug/input.txt" />
+				</ExtraCommands>
+			</Target>
+			<Target title="ReleaseNoConsoleTest">
+				<Option output="dist/Release/noconsoletest" prefix_auto="1" extension_auto="1" />
+				<Option working_dir="dist/Release" />
+				<Option object_output="obj/Release/" />
+				<Option type="1" />
+				<Option compiler="gcc" />
+				<Option use_console_runner="0" />
+				<Compiler>
+					<Add option="-O2" />
+					<Add option="-Wall" />
+					<Add option="-I/usr/local/include -I/usr/include/freetype2 -Wno-non-virtual-dtor" />
+				</Compiler>
+				<Linker>
+					<Add option="-s" />
+					<Add option="-L/usr/local/lib -Wl,-rpath,/usr/local/lib -lfltk2 -lX11 -lXi -lXinerama -lXft -lpthread -lm -lXext -lsupc++ -lpthread" />
+					<Add library="dist/Release/libshellspawn.a" />
+				</Linker>
+				<ExtraCommands>
+					<Add after="cp src/test/input.txt dist/Release/input.txt" />
+				</ExtraCommands>
+			</Target>
+		</Build>
+		<VirtualTargets>
+			<Add alias="DebugUnix" targets="DebugUnixLib;DebugTestClient;DebugShellTest;DebugNoConsoleTest;" />
+			<Add alias="DebugWindows" targets="DebugTestClient;DebugWinLib;DebugShellTest;DebugNoConsoleTest;" />
+			<Add alias="ReleaseUnix" targets="ReleaseUnixLib;ReleaseTestClient;ReleaseShellTest;ReleaseNoConsoleTest;" />
+			<Add alias="ReleaseWindows" targets="ReleaseTestClient;ReleaseWinLib;ReleaseShellTest;ReleaseNoConsoleTest;" />
+		</VirtualTargets>
+		<Compiler>
+			<Add option="-DUNIX" />
+			<Add directory="src" />
+		</Compiler>
+		<Unit filename="src/shellspawn.h">
+			<Option target="DebugUnixLib" />
+			<Option target="ReleaseUnixLib" />
+			<Option target="DebugWinLib" />
+			<Option target="ReleaseWinLib" />
+		</Unit>
+		<Unit filename="src/test/noconsoletest.cpp">
+			<Option target="DebugNoConsoleTest" />
+			<Option target="ReleaseNoConsoleTest" />
+		</Unit>
+		<Unit filename="src/test/shelltest.cpp">
+			<Option target="ReleaseShellTest" />
+			<Option target="DebugShellTest" />
+		</Unit>
+		<Unit filename="src/test/testclient.cpp">
+			<Option target="DebugTestClient" />
+			<Option target="ReleaseTestClient" />
+		</Unit>
+		<Unit filename="src/unixshell.cpp">
+			<Option target="DebugUnixLib" />
+			<Option target="ReleaseUnixLib" />
+		</Unit>
+		<Unit filename="src/win32shell.cpp">
+			<Option target="ReleaseWinLib" />
+			<Option target="DebugWinLib" />
+		</Unit>
+		<Extensions>
+			<code_completion />
+			<debugger />
+		</Extensions>
+	</Project>
+</CodeBlocks_project_file>

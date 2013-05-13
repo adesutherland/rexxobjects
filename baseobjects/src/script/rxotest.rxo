@@ -1,0 +1,59 @@
+# Test RexxObjects RXO file
+BEGINOBJECT testObject
+  BEGINFUNCTION main
+   REXX
+    LINE /* Inline Rexx Example */
+    LINE say "Function testObject.main() Called"
+    LINE say "Default Environment:" address()
+    LINE say "rootobject2.function() =" .rootobject2.function()
+    LINE say "exadd(3,5) =" exadd(3,5)
+    LINE call child.setGlobals
+    LINE call child.printGlobals
+    LINE return 0
+   ENDREXX
+  ENDFUNCTION
+  BEGINFUNCTION exadd
+   REXXFILE src/script/externalrexx.rex
+  ENDFUNCTION
+  BEGINOBJECT child
+   GLOBALVAR gvar
+   GLOBALSTEM gstem.
+   GLOBALFILTER gfilter
+   BEGINFUNCTION setGlobals
+    REXX
+     LINE gvar="GVAR Test value"
+     LINE gstem.0=2
+     LINE gstem.1="GSTEM Test value 1 of 2"
+     LINE gstem.2="GSTEM Test value 2 of 2"
+     LINE gfilter_big="GFILTER Big Value"
+     LINE gfilter_small="GFILTER Small Value"
+     LINE call SaveVar "gvar"
+     LINE call SaveStem "gstem."
+     LINE call SaveFilter "gfilter"
+    ENDREXX
+   ENDFUNCTION
+   BEGINFUNCTION printGlobals
+    REXX
+     LINE call LoadVar "gvar"
+     LINE call LoadStem "gstem."
+     LINE call LoadFilter "gfilter"
+     LINE say "gvar =" gvar
+     LINE say "gstem.0 =" gstem.0
+     LINE say "gstem.1 =" gstem.1
+     LINE say "gstem.2 =" gstem.2
+     LINE say "gfilter_big =" gfilter_big
+     LINE say "gfilter_small =" gfilter_small
+    ENDREXX
+   ENDFUNCTION
+  ENDOBJECT
+ENDOBJECT
+BEGINOBJECT rootobject2
+  TYPE BROBase
+  BEGINFUNCTION function
+   REXX
+    LINE /* Inline Rexx Example */
+    LINE say "(Function rootobject2.function() Called. Returning 2)"
+    LINE return 2
+   ENDREXX
+  ENDFUNCTION
+ENDOBJECT

@@ -1,0 +1,257 @@
+# *************************************************************************
+# A B O U T   T H I S   W O R K  -  V I S U A L O B J E C T S
+# *************************************************************************
+# Work Name   : VisualObjects
+# Description : Part of RexxObjects - Visual C++ objects for REXX based on
+#             : FLTK.
+# Copyright   : Copyright (C) 2008 Adrian Sutherland
+# *************************************************************************
+# A B O U T   T H I S   F I L E
+# *************************************************************************
+# File Name   : testform.vrf
+# Description : testform VisualObjects/RexxObjects definition file
+# *************************************************************************
+# L I C E N S E
+# *************************************************************************
+# This program is free software: you can redistribute it and/or modify
+# it under the terms of version 3 of the GNU General Public License as
+# published by the Free Software Foundation.
+#
+# This program is distributed in the hope that it will be useful,
+# but WITHOUT ANY WARRANTY; without even the implied warranty of
+# MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+# GNU General Public License for more details.
+#
+# You should have received a copy of the GNU General Public License
+# along with this program. If not, see <http://www.gnu.org/licenses/>.
+#
+# For the avoidance of doubt:
+# - Version 3 of the license (i.e. not earlier nor later versions) apply.
+# - a copy of the license text should be in the "license" directory of the
+#   source distribution.
+# - Requests for use under other licenses will be treated sympathetically,
+#   please see contact details.
+# *************************************************************************
+# C O N T A C T   D E T A I L S
+# *************************************************************************
+# E-mail      : adrian@sutherlandonline.org
+#             : adrian@open-bpm.org
+#             : sutherland@users.sourceforge.net
+# Web         : http://rexxobjects.sourceforge.net/
+#             : www.open-bpm.org
+# Telephone   : Please e-mail for details
+# Postal      : UK - Please e-mail for details
+# *************************************************************************
+BEGINFORM testForm
+ WIDTH 500
+ HEIGHT 180
+ TITLE "TestForm Window"
+ BEGINLABEL label1
+  WIDTH 460
+  HEIGHT 100
+  TOP 20
+  LEFT 20
+  TITLE "BROexx Version 0.0.6"
+  BOXTYPE UP_BOX
+  LABELFONT HELVETICA_BOLD_ITALIC
+  LABELSIZE 36
+  LABELTYPE SHADOW_LABEL
+ ENDLABEL
+ BEGINBUTTON execute
+  WIDTH 50
+  HEIGHT 20
+  TOP 140
+  LEFT 20
+  TITLE "Execute"
+  BEGINCALLBACK
+   EXTERNALREXX hello.rex
+  ENDCALLBACK
+ ENDBUTTON
+ BEGINBUTTON test
+  WIDTH 50
+  HEIGHT 20
+  TOP 140
+  LEFT 90
+  TITLE "Test"
+  BEGINCALLBACK
+   REXX
+    LINE /* Inline Rexx Example */
+#     LINE call .console.show
+#     LINE say "Test button pressed"
+#    LINE total = 0
+#    LINE do i=1 to 500000
+#    LINE  total = total + i;
+#    LINE  if total>100000 then total = 0
+#    LINE  call my_test
+#    LINE  say "Count" i
+#    LINE end
+#    LINE exit
+#
+#    LINE say "Name="getName()
+#    LINE say "Full name="getFullName()
+#    LINE say "Type="getType()
+#    LINE say "Parent Name="parent.getName()
+#    LINE say "Parent Full name="parent.getFullName()
+#    LINE say "ParentType="parent.getType()
+#    LINE say "List Roots"
+#    LINE call listRoot("name.")
+#    LINE do i=1 to name.0
+#    LINE  say "-" name.i
+#    LINE end
+#    LINE say "Listing my Siblings"
+    LINE call parent.listChildren("name.")
+#    LINE do i=1 to name.0
+#    LINE  say "-" name.i
+#    LINE end
+#    LINE say "Join Test"
+#    LINE say "JOIN(Start,End)="parent.join("Start","End")
+#    LINE say "Long Join Test"
+#    LINE arg1=copies("Y",300)
+#    LINE arg2=copies("X",156)
+#    LINE say "JOIN()="parent.join(arg1,arg2)
+#    LINE say "Local Function Test"
+    LINE say my_test()
+#    LINE say "This function does not exist"
+#    LINE call doesnotexist "hello"
+#    LINE say "Start Thread"
+#    LINE call StartThread my_test
+   ENDREXX
+  ENDCALLBACK
+  BEGINFUNCTION my_test
+   REXX
+    LINE /* Inline Rexx Example */
+    LINE say "Function my_test() Called"
+    LINE say "Default Environment:" address()
+#    LINE parse pull name
+#    LINE say "Entered: " name
+    LINE total = 0
+    LINE do i=1 to 50001
+    LINE  total = total + i;
+    LINE  if total>100000 then total = 0
+    LINE end
+    LINE say "Function my_test() Loop Complete -" total
+    LINE return "OK"
+    LINE Say "Testing AVSEHELL - testclient"
+    LINE in.0=1
+    LINE in.1="Adrian Sutherland"
+    LINE signal off error
+    LINE  'testclient.exe arg1 "argument 2" Arg3 < stem in. >stem out. 2> stem err.'
+    LINE  say "RC="RC
+    LINE do i=1 to out.0
+    LINE  say "out" i "=" out.i
+    LINE end
+    LINE do i=1 to err.0
+    LINE  say "err" i "=" err.i
+    LINE end
+    LINE return "OK"
+   ENDREXX
+  ENDFUNCTION
+ ENDBUTTON
+ BEGINBUTTON test2
+  WIDTH 50
+  HEIGHT 20
+  TOP 140
+  LEFT 160
+  TITLE "Var Test"
+  GLOBALVAR gvar
+  GLOBALSTEM gstem.
+  GLOBALFILTER gfilter
+  BEGINCALLBACK
+   REXX
+    LINE /* Testing Global Variables */
+    LINE call .console.show
+    LINE say """Var Test"" button pressed:" getName()
+    LINE say "gvar="gvar
+    LINE say "call loadvar"
+    LINE call loadvar "gvar"
+    LINE say "gvar="gvar
+    LINE if gvar="" then gvar=0
+    LINE else gvar=gvar+1
+    LINE say "gvar updated. gvar="gvar
+    LINE say "call savevar"
+    LINE call savevar "gvar"
+    LINE say "gvar="gvar
+    LINE say "call child_func"
+    LINE call child_func
+    LINE say "returned from child_func. gvar="gvar
+    LINE say "call loadvar"
+    LINE call loadvar "gvar"
+    LINE say "gvar="gvar
+    LINE say "testing stem"
+    LINE call loadstem "gstem."
+    LINE say "gstem:"
+    LINE do i=1 to gstem.0; say " " gstem.i; end
+    LINE say "Adding line"
+    LINE call addtogstem
+    LINE call loadstem "gstem."
+    LINE say "gstem:"
+    LINE do i=1 to gstem.0; say " " gstem.i; end
+    LINE say "testing filter"
+    LINE say "call loadfilter"
+    LINE call loadfilter "gfilter"
+    LINE say "gfilter.SET="gfilter.SET
+    LINE if gfilter.SET="GFILTER.SET" then gfilter.SET=1
+    LINE else gfilter.SET=gfilter.SET+1
+    LINE say "xfilter.SET="xfilter.SET
+    LINE if xfilter.SET="XFILTER.SET" then xfilter.SET=1
+    LINE else xfilter.SET=xfilter.SET+1
+    LINE say "call savefilter"
+    LINE call savefilter "gfilter"
+   ENDREXX
+  ENDCALLBACK
+  BEGINFUNCTION child_func
+   REXX
+    LINE say "Function child_func() Called"
+    LINE say "gvar="gvar
+    LINE say "call loadvar"
+    LINE call loadvar "gvar"
+    LINE say "gvar="gvar
+    LINE if gvar="" then gvar=0
+    LINE else gvar=gvar+1
+    LINE say "gvar updated. gvar="gvar
+    LINE say "call savevar"
+    LINE call savevar "gvar"
+   ENDREXX
+  ENDFUNCTION
+  BEGINFUNCTION addtogstem
+   REXX
+    LINE call loadstem "gstem."
+    LINE x=gstem.0+1
+    LINE gstem.0=x
+    LINE gstem.x="Line" x
+    LINE call savestem "gstem."
+   ENDREXX
+  ENDFUNCTION
+ ENDBUTTON
+ BEGINBUTTON exit
+  WIDTH 50
+  HEIGHT 20
+  TOP 140
+  LEFT 430
+  TITLE "Exit"
+  BEGINCALLBACK
+   REXX
+    LINE /* Close window (and console) */
+    LINE call parent.hide
+    LINE if findRoot("console")<>"" then call .console.hide
+   ENDREXX
+  ENDCALLBACK
+ ENDBUTTON
+ BEGINCALLBACK
+  REXX
+   LINE /* Close window (and console) */
+   LINE call hide
+   LINE if findRoot("console")<>"" then call .console.hide
+  ENDREXX
+ ENDCALLBACK
+ BEGINFUNCTION JOIN
+  REXX
+   LINE /* Inline Rexx Example */
+   LINE say "Function JOIN Called"
+   LINE PARSE ARG a, b
+   LINE say "a=" a
+   LINE say "b=" b
+   LINE return a || b
+  ENDREXX
+ ENDFUNCTION
+ENDFORM

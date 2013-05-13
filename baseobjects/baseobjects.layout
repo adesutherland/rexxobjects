@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8" standalone="yes" ?>
+<CodeBlocks_layout_file>
+	<ActiveTarget name="WinRelease" />
+	<File name="src\debug.h" open="0" top="0" tabpos="0">
+		<Cursor position="0" topLine="28" />
+	</File>
+	<File name="src\object.cpp" open="1" top="0" tabpos="3">
+		<Cursor position="56997" topLine="2117" />
+	</File>
+	<File name="src\object.h" open="0" top="0" tabpos="5">
+		<Cursor position="10557" topLine="218" />
+	</File>
+	<File name="src\rexxfunc.cpp" open="1" top="0" tabpos="2">
+		<Cursor position="33348" topLine="876" />
+	</File>
+	<File name="src\rexxfunc.h" open="1" top="0" tabpos="4">
+		<Cursor position="4404" topLine="108" />
+	</File>
+	<File name="src\script\baseobjectstest.rxo" open="1" top="1" tabpos="1">
+		<Cursor position="35960" topLine="953" />
+	</File>
+	<File name="src\script\bootstraptest.rex" open="0" top="0" tabpos="0">
+		<Cursor position="194" topLine="0" />
+	</File>
+	<File name="src\script\main.cpp" open="0" top="0" tabpos="9">
+		<Cursor position="3255" topLine="30" />
+	</File>
+	<File name="src\script\processrxo-r.cfg" open="0" top="0" tabpos="0">
+		<Cursor position="590" topLine="0" />
+	</File>
+	<File name="src\script\processrxo.rex" open="0" top="0" tabpos="4">
+		<Cursor position="0" topLine="34" />
+	</File>
+	<File name="src\script\realpath.cpp" open="0" top="0" tabpos="0">
+		<Cursor position="1098" topLine="23" />
+	</File>
+	<File name="src\script\rxowrapper-debug.cfg" open="0" top="0" tabpos="7">
+		<Cursor position="1297" topLine="0" />
+	</File>
+	<File name="src\script\rxowrapper-reginarelease.cfg" open="0" top="0" tabpos="6">
+		<Cursor position="1308" topLine="0" />
+	</File>
+	<File name="src\script\rxowrapper-release.cfg" open="0" top="0" tabpos="5">
+		<Cursor position="1301" topLine="0" />
+	</File>
+	<File name="src\script\rxowrapper.cfg" open="0" top="0" tabpos="8">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src\script\rxowrapper.rex" open="0" top="0" tabpos="10">
+		<Cursor position="0" topLine="0" />
+	</File>
+	<File name="src\script\scriptlib.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="4485" topLine="96" />
+	</File>
+	<File name="src\shell.cpp" open="0" top="0" tabpos="7">
+		<Cursor position="2486" topLine="37" />
+	</File>
+	<File name="src\test\botestlib.cpp" open="0" top="0" tabpos="3">
+		<Cursor position="2980" topLine="43" />
+	</File>
+</CodeBlocks_layout_file>

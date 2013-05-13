@@ -1,0 +1,1019 @@
+# BaseOjects Test RXO file
+BEGINOBJECT testBaseObjects
+  BEGINFUNCTION main
+   REXX
+    LINE /* Inline Rexx Example */
+    LINE say "BaseOjects Test Suite"
+    LINE say "Version 0.1"
+    LINE parse version ver
+    LINE say "Rexx Version:" ver
+    LINE call test1 "Arg1", "Arg2"
+    LINE call test2
+    LINE call test3
+    LINE call test4
+    LINE call test5
+    LINE call test6
+    LINE call test7
+    LINE call test8
+    LINE call test9
+    LINE call test10
+    LINE call test11
+    LINE call test12
+    LINE call test13
+    LINE call test14
+    LINE call test15
+    LINE call test16
+    LINE call test17
+    LINE call test18
+    LINE call test19
+    LINE call test20
+    LINE call test21
+    LINE call test22
+    LINE call test23
+    LINE call test24
+
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test1
+   REXX
+    LINE Say "Test 1 - Arguments to script"
+    LINE parse arg a1, a2
+    LINE if a1<>"Arg1" then do
+    LINE  say "TEST 1.1 FAILED - a1 is not set to Arg1"
+    LINE  return
+    LINE end
+    LINE if a2<>"Arg2" then do
+    LINE  say "TEST 1.2 FAILED - a2 is not set to Arg2"
+    LINE  return
+    LINE end
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test2
+   REXX
+    LINE Say "Test 2 - Address environemnt"
+    LINE ret=address()
+    LINE if ret<>"RXOSHELL" then say "TEST 2.1 FAILED - Address() returned" ret
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test3
+   REXX
+    LINE say "Test 3 - AddGlobalFilter"
+    LINE signal on syntax name ERR1
+    LINE ret=addglobalfilter() /* Should not work - no arguments */
+    LINE say "TEST 3.1 FAILED - returned OK for a invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 3.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 3.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=addglobalfilter("FILTER", 3) /* Should not work - invalid arguments */
+    LINE say "TEST 3.4 FAILED - returned OK for invalid arguments"
+    LINE ERR2:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 3.5 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 3.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE ret=addglobalfilter("FILTER1") /* Should work */
+    LINE if ret<>0 then say "TEST 3.7 FAILED. Returned:" ret
+    LINE ret=addglobalfilter("") /* Should work */
+    LINE if ret<>0 then say "TEST 3.8 FAILED. Returned:" ret
+    LINE signal on syntax name ERR3
+    LINE ret=addglobalfilter("1BAD") /* Should not work - invalid filter */
+    LINE say "TEST 3.9 FAILED - returned OK for a invalid filter"
+    LINE ERR3:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 3.10 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid rexx filter name: 1BAD" then do
+    LINE  say "TEST 3.11 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test4
+   REXX
+    LINE say "Test 4 - AddGlobalStem"
+    LINE signal on syntax name ERR1
+    LINE ret=addglobalstem() /* Should not work - no arguments */
+    LINE say "TEST 4.1 FAILED - returned OK for a invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 4.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 4.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=addglobalstem("GSTEM.", 3) /* Should not work - invalid arguments */
+    LINE say "TEST 4.4 FAILED - returned OK for invalid arguments"
+    LINE ERR2:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 4.5 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 4.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE ret=addglobalstem("GSTEM.") /* Should work */
+    LINE if ret<>0 then say "TEST 4.7 FAILED. Returned:" ret
+    LINE signal on syntax name ERR3
+    LINE ret=addglobalstem("BAD") /* Should not work - invalid filter */
+    LINE say "TEST 4.8 FAILED - returned OK for a invalid filter"
+    LINE ERR3:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 4.9 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid rexx stem name: BAD" then do
+    LINE  say "TEST 4.10 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test5
+   REXX
+    LINE say "Test 5 - AddGlobalVar"
+    LINE signal on syntax name ERR1
+    LINE ret=AddGlobalVar() /* Should not work - no arguments */
+    LINE say "TEST 5.1 FAILED - returned OK for a invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 5.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 5.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=AddGlobalVar("GVAR", 3) /* Should not work - invalid arguments */
+    LINE say "TEST 5.4 FAILED - returned OK for invalid arguments"
+    LINE ERR2:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 5.5 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No global name specified or too many arguments" then do
+    LINE  say "TEST 5.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE ret=AddGlobalVar("GVAR") /* Should work */
+    LINE if ret<>0 then say "TEST 5.7 FAILED. Returned:" ret
+    LINE signal on syntax name ERR3
+    LINE ret=AddGlobalVar("BAD.") /* Should not work - invalid filter */
+    LINE say "TEST 5.8 FAILED - returned OK for a invalid filter"
+    LINE ERR3:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 5.9 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid rexx variable name: BAD." then do
+    LINE  say "TEST 5.10 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test6
+   REXX
+    LINE say "Test 6 - SetRexx"
+    LINE signal on syntax name ERR1
+    LINE ret=setRexx() /* Should not work - no arguments */
+    LINE say "TEST 6.1 FAILED - returned OK for invalid arguments "
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 6.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments (should be: function name, rexx code)" then do
+    LINE  say "TEST 6.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=setRexx("TestFunction", "arg a,b; return a+b;", 3) /* Should not work - invlid arguments */
+    LINE say "TEST 6.4 FAILED - returned OK for invalid arguments"
+    LINE return
+    LINE ERR2:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 6.5 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments (should be: function name, rexx code)" then do
+    LINE  say "TEST 6.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE ret=setRexx("TestFunction", "arg a,b; return a+b;") /* Should work */
+    LINE if ret<>0 then say "TEST 6.7 FAILED - returned:" ret
+    LINE ret=TestFunction(1,2)
+    LINE if ret<>3 then say "TEST 6.8 FAILED - Did not return 3! Returned:" ret
+
+    # Special test for Regina - syntax error causes a signal condition
+    LINE parse version ver
+    LINE if left(ver,11)="REXX-Regina" then do
+    LINE  signal on syntax name ERR3
+    LINE  ret=setRexx("TestFunctionBad", "arg a,1b; return a+b;") /* syntax error */
+    LINE  say "TEST 6.7 Unexpected Return OK - when running Regina"
+    LINE  return
+    LINE end
+    LINE SIGNAL CONT1
+    LINE ERR3:
+    # Now try an run it
+    LINE signal on syntax name ERR4
+    LINE ret=TestFunctionBad(1,2)
+    LINE say "TEST 6.8 Unexpected Return OK - when running Regina"
+    LINE return
+    LINE ERR4:
+
+    # Special test for ooRexx - syntax error does not cause a syntax condition.
+    LINE CONT1:
+    LINE parse version ver
+    LINE if left(ver,11)="REXX-ooRexx" then do
+    LINE  signal on syntax name ERR5
+    LINE  ret=setRexx("TestFunctionBad", "arg a,1b; return a+b;") /* syntax error */
+    LINE end
+    LINE else return
+    # Now try an run it
+    LINE signal on syntax name ERR6
+    LINE say "Error Messages 26 & 26.4 expected below:"
+    LINE ret=TestFunctionBad(1,2)
+    LINE say "TEST 6.9 Unexpected Return OK - when running ooRexx"
+    LINE return
+    LINE ERR6:
+    LINE return
+    LINE ERR5:
+    LINE say "TEST 6.10 Unexpected Signal - when running ooRexx"
+    LINE return
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test7
+   REXX
+    LINE say "Test 7 - CallFunction"
+    LINE signal on syntax name ERR1
+    LINE call CallFunction /* Should not work - no arguments */
+    LINE say "TEST 7.1 FAILED - returned OK for invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 7.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be TARGET, FUNCTION, [Function Args], ..." then do
+    LINE  say "TEST 7.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    # Use TestFunction Created in Test 6
+    LINE signal on syntax name ERR3
+    LINE ret=CallFunction("self", "TestFunction", 2,3)
+    LINE if ret<>5 then say "TEST 7.4 FAILED - returned" ret "rather than 5"
+    LINE SIGNAL CONT1
+    LINE ERR3:
+    LINE Say "TEST 7.5 Syntax Condition:" errortext(rc) "-" RXORC RXOERRORMSG
+    LINE return
+    LINE CONT1:
+    # Use a Standard RXO member function
+    LINE signal on syntax name ERR4
+    LINE ret=CallFunction("self", "getType")
+    LINE if ret<>"BROBase" then say "TEST 7.6 FAILED - returned" ret "rather than BROBase"
+    LINE SIGNAL CONT2
+    LINE ERR4:
+    LINE Say "TEST 7.7 Syntax Condition:" errortext(rc) "-" RXORC RXOERRORMSG
+    LINE return
+    LINE CONT2:
+    # Should not work
+    LINE signal on syntax name ERR5
+    LINE say "Note: Error 41 expected below:"
+    LINE parse version ver
+    LINE if left(ver,11)="REXX-ooRexx" then say "OOREXX Note: Error Messages 26 & 26.4 expected below:"
+    LINE ret=CallFunction(self, "TestFunction", 2)
+    LINE say "TEST 7.8 FAILED - returned OK for invalid arguments to function"
+    LINE ERR5:
+    LINE if RXORC<>3 then say "TEST 7.9 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+    # Should not work - using Bad Function from Test 6
+    LINE signal on syntax name ERR6
+    LINE ret=CallFunction(self, "TestFunctionBad", 2)
+    LINE say "TEST 7.10 FAILED - returned OK for invalid arguments to function"
+    LINE ERR6:
+    LINE if RXORC<>3 then say "TEST 7.11 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+    # Should not work
+    LINE signal on syntax name ERR7
+    LINE ret=CallFunction(self, "MissingFunction")
+    LINE say "TEST 7.12 FAILED - returned OK for invalid arguments to function"
+    LINE ERR7:
+    LINE if RXORC<>2 then say "TEST 7.13 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test8
+   REXX
+    LINE say "Test 8 - CallProcedure"
+    LINE signal on syntax name ERR1
+    LINE call CallProcedure /* Should not work - no arguments */
+    LINE say "TEST 8.1 FAILED - returned OK for invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 8.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be TARGET, FUNCTION, [Function Args], ..." then do
+    LINE  say "TEST 8.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    # Use TestFunction Created in Test 6
+    LINE signal on syntax name ERR3
+    LINE call CallProcedure "self", "TestFunction", 2, 3
+    LINE SIGNAL CONT1
+    LINE ERR3:
+    LINE Say "TEST 8.5 Syntax Condition:" errortext(rc) "-" RXORC RXOERRORMSG
+    LINE return
+    LINE CONT1:
+    # Use a Standard RXO member function
+    LINE signal on syntax name ERR4
+    LINE call CallProcedure "self", "getType"
+    LINE SIGNAL CONT2
+    LINE ERR4:
+    LINE Say "TEST 8.7 Syntax Condition:" errortext(rc) "-" RXORC RXOERRORMSG
+    LINE return
+    LINE CONT2:
+    # Should not work
+    LINE signal on syntax name ERR5
+    LINE say "Note: Error 41 expected below:"
+    LINE parse version ver
+    LINE if left(ver,11)="REXX-ooRexx" then say "OOREXX Note: Error Messages 26 & 26.4 expected below:"
+    LINE call CallProcedure self, "TestFunction", 2
+    LINE say "TEST 8.8 FAILED - returned OK for invalid arguments to function"
+    LINE ERR5:
+    LINE if RXORC<>3 then say "TEST 8.9 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+    # Should not work - using Bad Function from Test 6
+    LINE signal on syntax name ERR6
+    LINE call CallProcedure self, "TestFunctionBad", 2
+    LINE say "TEST 8.10 FAILED - returned OK for invalid arguments to function"
+    LINE ERR6:
+    LINE if RXORC<>3 then say "TEST 8.11 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+    # Should not work
+    LINE signal on syntax name ERR7
+    LINE call CallProcedure self, "MissingFunction"
+    LINE say "TEST 8.12 FAILED - returned OK for invalid arguments to function"
+    LINE ERR7:
+    LINE if RXORC<>2 then say "TEST 8.13 Syntax Condition with unexpected RXORC:" errortext(rc) "-" RXORC RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test9
+   REXX
+    LINE say "Test 9 - DeleteObject"
+    LINE signal on syntax name ERR1
+    LINE call DeleteObject
+    LINE say "TEST 9.1 FAILED - returned OK for invalid arguments"
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 9.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be OBJECT" then do
+    LINE  say "TEST 9.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE call DeleteObject doesnotexist
+    LINE say "TEST 9.4 FAILED - returned OK for object not found"
+    LINE return
+    LINE ERR2:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 9.5 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Object Not Found: DOESNOTEXIST" then do
+    LINE  say "TEST 9.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE call NewRootObject "BROBase", "testRootObject"
+    LINE signal on syntax name ERR3
+    LINE call DeleteObject ".testRootObject"
+    LINE if FindObject(".testRootObject")<>"" then say "TEST 9.7 FAILED - Object still exists"
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 9.8 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test10
+   REXX
+    LINE say "Test 10 - FindChild"
+    LINE signal on syntax name ERR1
+    LINE ret=FindChild()
+    LINE say "TEST 10.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 10.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be OBJECT" then do
+    LINE  say "TEST 10.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=FindChild(doesnotexist)
+    LINE if ret<>"" then say "TEST 10.4 FAILED - returned value for object not found:" ret
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 10.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE return
+    LINE CONT1:
+    LINE call NewObject "BROBase", "testObject"
+    LINE signal on syntax name ERR3
+    LINE ret=FindChild(testobject)
+    LINE call DeleteObject "testObject"
+    LINE if ret<>"TESTBASEOBJECTS.TESTOBJECT" then say "TEST 10.6 FAILED - Object full name is not as expected:" ret
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 10.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test11
+   REXX
+    LINE say "Test 11 - FindObject"
+    LINE signal on syntax name ERR1
+    LINE ret=FindObject()
+    LINE say "TEST 11.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 11.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be OBJECT" then do
+    LINE  say "TEST 11.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=FindObject(doesnotexist)
+    LINE if ret<>"" then say "TEST 11.4 FAILED - returned value for object not found:" ret
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 11.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE return
+    LINE CONT1:
+    LINE call NewObject "BROBase", "testObject"
+    LINE signal on syntax name ERR3
+    LINE ret=FindObject(testobject)
+    LINE call DeleteObject "testObject"
+    LINE if ret<>"TESTBASEOBJECTS.TESTOBJECT" then say "TEST 11.6 FAILED - Object full name is not as expected:" ret
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 11.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test12
+   REXX
+    LINE say "Test 12 - FindRoot"
+    LINE signal on syntax name ERR1
+    LINE ret=FindRoot()
+    LINE say "TEST 12.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 12.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be OBJECT" then do
+    LINE  say "TEST 12.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=FindRoot(doesnotexist)
+    LINE if ret<>"" then say "TEST 12.4 FAILED - returned value for object not found:" ret
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 12.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE return
+    LINE CONT1:
+    LINE call NewRootObject "BROBase", "testObject"
+    LINE signal on syntax name ERR3
+    LINE ret=FindRoot(testobject)
+    LINE call DeleteObject ".testObject"
+    LINE if ret<>"TESTOBJECT" then say "TEST 12.6 FAILED - Object full name is not as expected:" ret
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 12.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test13
+   REXX
+    LINE say "Test 13 - GetExeName"
+    LINE signal on syntax name ERR1
+    LINE ret=GetExeName("BAD")
+    LINE say "TEST 13.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 13.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 13.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=GetExeName()
+    LINE p=lastpos("/",ret)
+    LINE if p=0 then p=lastpos("\",ret)
+    LINE if p<>0 then name=substr(ret,p+1)
+    LINE parse var name name "." ext
+    LINE if name<>"baseobjectstest" then say "TEST 13.4 FAILED - Exec full name is not as expected:" ret
+    LINE return
+    LINE ERR2:
+    LINE say "TEST 13.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test14
+   REXX
+    LINE say "Test 14 - GetFullName"
+    LINE signal on syntax name ERR1
+    LINE ret=GetFullName("BAD")
+    LINE say "TEST 14.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 14.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 14.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE name=GetFullName()
+    LINE if name<>"TESTBASEOBJECTS" then say "TEST 14.4 FAILED - Exec full name is not as expected:" name
+    LINE SIGNAL CONT1
+    LINE ERR2:
+    LINE say "TEST 14.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+    LINE signal on syntax name ERR3
+    LINE call NewObject "BROBase", "test14Object"
+    LINE name=test14Object.GetFullName()
+    LINE if name<>"TESTBASEOBJECTS.TEST14OBJECT" then say "TEST 14.6 FAILED - Exec full name is not as expected:" name
+    LINE call DeleteObject "test14Object"
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 14.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test15
+   REXX
+    LINE say "Test 15 - GetName"
+    LINE signal on syntax name ERR1
+    LINE ret=GetName("BAD")
+    LINE say "TEST 15.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 15.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 15.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE name=GetName()
+    LINE if name<>"TESTBASEOBJECTS" then say "TEST 15.4 FAILED - Exec full name is not as expected:" name
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 15.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+    LINE signal on syntax name ERR3
+    LINE call NewObject "BROBase", "test15Object"
+    LINE name=test15Object.GetName()
+    LINE if name<>"TEST15OBJECT" then say "TEST 15.6 FAILED - Exec full name is not as expected:" name
+    LINE call DeleteObject "test15Object"
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 15.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test16
+   REXX
+    LINE say "Test 16 - GetParent"
+    LINE signal on syntax name ERR1
+    LINE ret=GetParent("BAD")
+    LINE say "TEST 16.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 16.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 16.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE name=GetParent()
+    LINE if name<>"" then say "TEST 16.4 FAILED - Parent name is not as expected (i.e. blank):" name
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 16.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+    LINE signal on syntax name ERR3
+    LINE call NewObject "BROBase", "test16Object"
+    LINE name=test16Object.GetParent()
+    LINE if name<>"TESTBASEOBJECTS" then say "TEST 16.6 FAILED - Parent name is not as expected:" name
+    LINE call DeleteObject "test16Object"
+    LINE return
+    LINE ERR3:
+    LINE say "TEST 16.7 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test17
+   REXX
+    LINE say "Test 17 - GetType"
+    LINE signal on syntax name ERR1
+    LINE ret=GetName("BAD")
+    LINE say "TEST 17.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 17.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 17.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE type=GetType()
+    LINE if type<>"BROBase" then say "TEST 17.4 FAILED - Object Type is not as expected:" type
+    LINE return
+    LINE ERR2:
+    LINE say "TEST 17.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test18
+   REXX
+    LINE say "Test 18 - IsChildThread"
+    LINE signal on syntax name ERR1
+    LINE ret=IsChildThread("BAD")
+    LINE say "TEST 18.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 18.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 18.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE bool=IsChildThread()
+    LINE if bool<>"0" then say "TEST 18.4 FAILED - Did not return 0 as expected:" bool
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 18.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+    LINE call StartThread "test18Helper"
+    LINE call SysSleep 1
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test18Helper
+   REXX
+    LINE say "Test 18-Helper: Child Thread Started"
+    LINE signal on syntax name ERR1
+    LINE bool=IsChildThread()
+    LINE if bool<>"1" then say "TEST 18-Helper.1 FAILED - Did not return 1 as expected:" bool
+    LINE signal CONT1
+    LINE ERR1:
+    LINE say "TEST 18-Helper.2 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test19
+   REXX
+    LINE say "Test 19 - IsMainThread"
+    LINE signal on syntax name ERR1
+    LINE ret=IsChildThread("BAD")
+    LINE say "TEST 19.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 19.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - should be no arguments" then do
+    LINE  say "TEST 19.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE bool=IsMainThread()
+    LINE if bool<>"1" then say "TEST 19.4 FAILED - Did not return 1 as expected:" bool
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 19.5 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+    LINE call StartThread "test19Helper"
+    LINE call SysSleep 1
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test19Helper
+   REXX
+    LINE say "Test 19-Helper: Child Thread Started"
+    LINE signal on syntax name ERR1
+    LINE bool=IsMainThread()
+    LINE if bool<>"0" then say "TEST 19-Helper.1 FAILED - Did not return 0 as expected:" bool
+    LINE signal CONT1
+    LINE ERR1:
+    LINE say "TEST 19-Helper.2 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test20
+   REXX
+    LINE say "Test 20 - IsValidFilter"
+    LINE signal on syntax name ERR1
+    LINE ret=IsValidFilter()
+    LINE say "TEST 20.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 20.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No name specified or too many arguments" then do
+    LINE  say "TEST 20.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE bool=IsValidFilter("1Bad")
+    LINE if bool<>"0" then say "TEST 20.4 FAILED - Did not return 0 as expected:" bool
+    LINE bool=IsValidFilter("Good1")
+    LINE if bool<>"1" then say "TEST 20.5 FAILED - Did not return 1 as expected:" bool
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 20.6 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test21
+   REXX
+    LINE say "Test 21 - IsValidStem"
+    LINE signal on syntax name ERR1
+    LINE ret=IsValidStem()
+    LINE say "TEST 21.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 21.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No name specified or too many arguments" then do
+    LINE  say "TEST 21.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE bool=IsValidStem("Bad1")
+    LINE if bool<>"0" then say "TEST 21.4 FAILED - Did not return 0 as expected:" bool
+    LINE bool=IsValidStem("Good1.")
+    LINE if bool<>"1" then say "TEST 21.5 FAILED - Did not return 1 as expected:" bool
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 21.6 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test22
+   REXX
+    LINE say "Test 22 - IsValidVar"
+    LINE signal on syntax name ERR1
+    LINE ret=IsValidVar()
+    LINE say "TEST 22.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 22.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"No name specified or too many arguments" then do
+    LINE  say "TEST 22.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE bool=IsValidVar("1Bad")
+    LINE if bool<>"0" then say "TEST 22.4 FAILED - Did not return 0 as expected:" bool
+    LINE bool=IsValidVar("Good1")
+    LINE if bool<>"1" then say "TEST 22.5 FAILED - Did not return 1 as expected:" bool
+    LINE signal CONT1
+    LINE ERR2:
+    LINE say "TEST 22.6 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test23
+   REXX
+    LINE say "Test 23 - listChildren"
+    LINE signal on syntax name ERR1
+    LINE ret=listChildren()
+    LINE say "TEST 23.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 23.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - No stem name specified or too many arguments" then do
+    LINE  say "TEST 23.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=listChildren("BADSTEM")
+    LINE say "TEST 23.4 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR2:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 23.5 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - Invalid stem name specified" then do
+    LINE  say "TEST 23.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR3
+    LINE ret=listChildren("CHILD.")
+    LINE if ret<>0 then do
+    LINE  say "TEST 23.7 FAILED - ret not 0 as expected"
+    LINE  return
+    LINE end
+    LINE if child.0<>0 then do
+    LINE  say "TEST 23.8 FAILED - child.0 not 0 as expected"
+    LINE  return
+    LINE end
+    LINE call NewObject "BROBase", "testObject1"
+    LINE call NewObject "BROBase", "testObject2"
+    LINE ret=listChildren("child.")
+    LINE if ret<>2 then do
+    LINE  say "TEST 23.9 FAILED - ret not 2 as expected"
+    LINE  return
+    LINE end
+    LINE if child.0<>2 then do
+    LINE  say "TEST 23.10 FAILED - child.0 not 2 as expected"
+    LINE  return
+    LINE end
+    LINE if child.1<>"TESTOBJECT1" then do
+    LINE  say "TEST 23.11 FAILED - child.1 not TESTOBJECT1 as expected, it is" child.1
+    LINE  return
+    LINE end
+    LINE if child.2<>"TESTOBJECT2" then do
+    LINE  say "TEST 23.12 FAILED - child.1 not TESTOBJECT2 as expected, it is" child.2
+    LINE  return
+    LINE end
+    LINE call DeleteObject "testObject1"
+    LINE call DeleteObject "testObject2"
+    LINE signal CONT1
+    LINE ERR3:
+    LINE say "TEST 23.13 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test24
+   REXX
+    LINE say "Test 24 - listRoot"
+    LINE signal on syntax name ERR1
+    LINE ret=listRoot()
+    LINE say "TEST 24.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 24.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - No stem name specified or too many arguments" then do
+    LINE  say "TEST 24.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=listRoot("BADSTEM")
+    LINE say "TEST 24.4 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR2:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 24.5 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - Invalid stem name specified" then do
+    LINE  say "TEST 24.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR3
+    LINE ret=listRoot("root.")
+    LINE if ret<>1 then do
+    LINE  say "TEST 24.7 FAILED - ret not 1 as expected"
+    LINE  return
+    LINE end
+    LINE if root.0<>1 then do
+    LINE  say "TEST 24.8 FAILED - root.0 not 1 as expected"
+    LINE  return
+    LINE end
+    LINE if root.1<>"TESTBASEOBJECTS" then do
+    LINE  say "TEST 24.9 FAILED - root.1 not TESTBASEOBJECTS as expected, it is" root.1
+    LINE  return
+    LINE end
+    LINE signal CONT1
+    LINE ERR3:
+    LINE say "TEST 24.10 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+  BEGINFUNCTION test25
+   REXX
+    LINE say "Test 25 - SaveFilter and LoadFilter"
+    LINE signal on syntax name ERR1
+    LINE ret=listRoot()
+    LINE say "TEST 24.1 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR1:
+    LINE if RXORC<>1 then do
+    LINE  say "TEST 24.2 FAILED - SYNTAX Signaled but RXORC<>1"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - No stem name specified or too many arguments" then do
+    LINE  say "TEST 24.3 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR2
+    LINE ret=listRoot("BADSTEM")
+    LINE say "TEST 24.4 FAILED - returned OK for invalid arguments:" ret
+    LINE return
+    LINE ERR2:
+    LINE if RXORC<>2 then do
+    LINE  say "TEST 24.5 FAILED - SYNTAX Signaled but RXORC<>2"
+    LINE  return
+    LINE end
+    LINE if RXOERRORMSG<>"Invalid Arguments - Invalid stem name specified" then do
+    LINE  say "TEST 24.6 FAILED - SYNTAX Signaled but RXOERRORMSG not set correctly"
+    LINE  return
+    LINE end
+    LINE signal on syntax name ERR3
+    LINE ret=listRoot("root.")
+    LINE if ret<>1 then do
+    LINE  say "TEST 24.7 FAILED - ret not 1 as expected"
+    LINE  return
+    LINE end
+    LINE if root.0<>1 then do
+    LINE  say "TEST 24.8 FAILED - root.0 not 1 as expected"
+    LINE  return
+    LINE end
+    LINE if root.1<>"TESTBASEOBJECTS" then do
+    LINE  say "TEST 24.9 FAILED - root.1 not TESTBASEOBJECTS as expected, it is" root.1
+    LINE  return
+    LINE end
+    LINE signal CONT1
+    LINE ERR3:
+    LINE say "TEST 24.10 FAILED - Unexpected SYNTAX Signaled:" RXORC "-" RXOERRORMSG
+    LINE CONT1:
+   ENDREXX
+  ENDFUNCTION
+
+
+ENDOBJECT

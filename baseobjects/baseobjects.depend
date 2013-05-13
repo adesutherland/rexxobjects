@@ -1,0 +1,139 @@
+# depslib dependency file v1.0
+1270223908 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\object.cpp
+	"debug.h"
+	"object.h"
+	"rexxfunc.h"
+	<stdlib.h>
+	<ctype.h>
+	<sstream>
+	<windows.h>
+	<process.h>
+	<pthread.h>
+	<errno.h>
+
+1265736583 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\debug.h
+	<iostream>
+
+1262456144 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\object.h
+	<map>
+	<string>
+	<vector>
+	<iostream>
+	<sstream>
+	"exception.h"
+	"thread.h"
+
+1261157268 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\exception.h
+	<string>
+
+1261157268 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\thread.h
+
+1261650721 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\rexxfunc.h
+	<string>
+	<vector>
+	<stack>
+	<rexx.h>
+	<rexxsaa.h>
+	<rexxtrans.h>
+
+1261994228 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\rexxtrans\dist\debug\rexxtrans.h
+	<windows.h>
+	<windows.h>
+	<windows.h>
+
+1265735431 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\rexxfunc.cpp
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	"debug.h"
+	"rexxfunc.h"
+	"shell.h"
+	"object.h"
+	<windows.h>
+	<pthread.h>
+
+1261157268 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\shell.h
+	<rexx.h>
+	<rexxsaa.h>
+	<rexxtrans.h>
+
+1261910726 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\shell.cpp
+	<stdio.h>
+	<string.h>
+	<stdlib.h>
+	<ctype.h>
+	<iostream>
+	<shellspawn.h>
+	"shell.h"
+	"object.h"
+	"rexxfunc.h"
+
+1262167613 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\shellspawn\dist\debug\shellspawn.h
+	<string>
+	<vector>
+	<stdio.h>
+
+1261157268 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\thread.cpp
+	"thread.h"
+
+1261157268 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\exception.cpp
+	"exception.h"
+	"object.h"
+	"debug.h"
+
+1261153668 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\test\botestlib.cpp
+	"object.h"
+
+1261153668 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\test\main.cpp
+	<iostream>
+	"object.h"
+
+1262386004 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\script\main.cpp
+	<stdio.h>
+	<stdlib.h>
+	<vector>
+	<string>
+	<iostream>
+
+1262264966 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\script\scriptlib.cpp
+	<iostream>
+	<string>
+	<vector>
+	<sstream>
+	<stdlib.h>
+	"object.h"
+
+1261997757 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\rexxtrans\dist\release\rexxtrans.h
+	<windows.h>
+	<windows.h>
+	<windows.h>
+
+1262171280 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\shellspawn\dist\release\shellspawn.h
+	<string>
+	<vector>
+	<stdio.h>
+
+1188775342 c:\regina\include\rexxsaa.h
+	<windows.h>
+	<windows.h>
+	<windows.h>
+
+1262017834 c:\documents and settings\asutherland\desktop\working copies\rexxobjects\rexx\regina\dist\rexxsaa.h
+	<windows.h>
+	<windows.h>
+	<windows.h>
+
+1262258315 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\script\realpath.c
+	<windows.h>
+	<stdlib.h>
+	<limits.h>
+	<errno.h>
+	<sys/stat.h>
+
+1262263013 source:c:\documents and settings\asutherland\desktop\working copies\rexxobjects\baseobjects\trunc\src\script\realpath.cpp
+	<windows.h>
+	<stdlib.h>
+	<limits.h>
+	<errno.h>
+	<sys/stat.h>
+
